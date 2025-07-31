@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apify Runner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>Apify Runner</h1>
+            <p>Execute your actors instantly</p>
+        </header>
+
+        <main>
+            <div id="auth-step" class="step active">
+                <div class="input-group">
+                    <input type="password" id="api-token" placeholder="Paste your API token here" autocomplete="off">
+                    <button onclick="authenticate()" class="primary">Connect</button>
+                </div>
+                <div id="auth-status" class="status"></div>
+            </div>
+
+            <div id="actors-step" class="step">
+                <h2>Choose an Actor</h2>
+                <div id="actors-grid" class="grid"></div>
+                <div id="actors-status" class="status"></div>
+            </div>
+
+            <div id="config-step" class="step">
+                <div class="actor-header">
+                    <h2 id="actor-name"></h2>
+                    <p id="actor-desc"></p>
+                </div>
+                <form id="config-form" class="form">
+                    <div id="form-fields"></div>
+                    <div class="actions">
+                        <button type="button" onclick="goBack()" class="secondary">Back</button>
+                        <button type="button" onclick="execute()" class="primary">Execute</button>
+                    </div>
+                </form>
+                <div id="config-status" class="status"></div>
+            </div>
+
+            <div id="results-step" class="step">
+                <div class="results-header">
+                    <h2>Execution Results</h2>
+                    <div id="run-status" class="run-status"></div>
+                </div>
+                <div id="results-content" class="results"></div>
+                <div class="actions">
+                    <button onclick="restart()" class="primary">Run Another</button>
+                </div>
+            </div>
+        </main>
+
+        <div id="loader" class="loader">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
